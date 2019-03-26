@@ -1,60 +1,105 @@
 #!/usr/bin/python
 
 import sys
-
-# my_list = [['rock'], ['paper'], ['scissors']]
-
-# my_list = []
+import math
 
 
 def rock_paper_scissors(n):
-    my_list = [['rock'], ['paper'], ['scissors']]
-    count = 1
+    outer_list = []
+    inner_list = []
 
-    def helper(helper_input, my_list, count):
-        print("Input:", helper_input)
-        # count = 0
-        print("count:", count)
-        if count == helper_input:
-            print("In base case")
-            return my_list
+    def helper(n, inner_list):
+        print("N:", n)
+        if n == 0:
+            outer_list.append(inner_list)
+            # print("We're in..", outer_list)
+            inner_list = []
+            return outer_list
+
         else:
-            print("helper_input 1st:", helper_input)
-            print("count 2nd:", count)
-            # helper_input -= 1
+            options = ['rock', 'paper', 'scissors']
+            for option in range(len(options)):
+                # print("Option:", option)
+                # print("options[option]:", options[option])
+                inner_list.append(options[option])
+                # print("Inner list =>", inner_list)
+                return helper(n - 1, inner_list)
 
-            print("count 3rd:", count)
-            print("helper_input 2nd", helper_input)
-            print("List 1st:", my_list)
-            rock_index = my_list.index(['rock'])
-        for item in range(3 ** count - 1):
-            print("Item", item)
-            my_list.insert(rock_index, ['rock'])
-        paper_index = my_list.index(['paper'])
-        for item in range(3 ** count - 1):
-            my_list.insert(paper_index, ['paper'])
-        scissors_index = my_list.index(['scissors'])
-        for item in range(3 ** count - 1):
-            my_list.insert(scissors_index, ['scissors'])
-        print("My list:", my_list)
-        options = ['rock', 'paper', 'scissors']
-        options_count = 0
-        for item in range(len(my_list)):
-            print("Item --", my_list[item])
-            my_list[item].append(options[options_count])
-            if options_count == 2:
-                options_count = 0
-            else:
-                options_count += 1
-        count += 1
-        helper(helper_input, my_list, count)
-    helper(n, my_list, count)
-    return my_list
+    helper(n, inner_list)
+    return outer_list
 
 
-# print(rock_paper_scissors(1))
+# print(rock_paper_scissors(0))
 print(rock_paper_scissors(2))
+# print(rock_paper_scissors(2))
 # print(rock_paper_scissors(3))
+
+
+# factorial_memo = {}
+
+# def factorial(k):
+#     if k < 2:
+#         return 1
+#     if k not in factorial_memo:
+#         print(factorial_memo)
+#         factorial_memo[k] = k * factorial(k-1)
+#     return factorial_memo[k]
+
+
+# def rock_paper_scissors(n):
+#     my_list = []
+
+#     def helper(helper_input):
+#         if helper_input == 0:
+#             my_list.append([])
+#             return my_list
+
+#         # make length of my_list correct - should be 3x the previous
+#         # array
+#         else:
+#             # print("My list ==>", my_list)
+#             # for item in range(3 ** count - 1):
+#             # length = len(my_list)
+#             # for item in range(length):
+#             options = ['rock', 'paper', 'scissors']
+#             for option in options:
+#                 my_list + [option]
+#                 print("my_list =>", my_list)
+#                 # my_list.append(my_list[item])
+#                 # my_list.insert(item, my_list[item])
+#                 # my_list.insert(0, item)
+#             # mid = math.ceil(len(my_list) / 2)
+#             # for item in range(3 ** count - 1):
+#             #     print("Item paper=>", item, my_list[item])
+#             #     my_list.insert(mid, ['paper'])
+#             # for item in range(3 ** count - 1):
+#             #     print("Item scissors=>", item, my_list[item])
+#             #     my_list.insert(-1, ['scissors'])
+
+#         # Add rock paper scissors to my_list with the correct
+#         # length of overall list, but incorrect length of
+#         # individual lists
+
+#         # options = ['rock', 'paper', 'scissors']
+#         # options_count = 0
+#         # for item in range(len(my_list)):
+#         #     # print("Item --", my_list[item])
+#         #     my_list[item].append(options[options_count])
+#         #     if options_count == 2:
+#         #         options_count = 0
+#         #     else:
+#         #         options_count += 1
+#         print("helper_input", helper_input)
+#         helper(helper_input - 1)
+#     helper(n, inner_list)
+#     return my_list
+
+
+# print(rock_paper_scissors(0))
+print(rock_paper_scissors(1))
+# print(rock_paper_scissors(2))
+# print(rock_paper_scissors(3))
+# print(rock_paper_scissors(4))
 
 # if n == 0:
 #     return my_list
@@ -78,17 +123,6 @@ print(rock_paper_scissors(2))
 #     if len(my_list[0]) == n:
 #         return my_list
 # return my_list
-
-
-# factorial_memo = {}
-
-# def factorial(k):
-#     if k < 2:
-#         return 1
-#     if k not in factorial_memo:
-#         print(factorial_memo)
-#         factorial_memo[k] = k * factorial(k-1)
-#     return factorial_memo[k]
 
 
 # print(factorial(3))
