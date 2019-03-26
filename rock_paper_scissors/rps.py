@@ -8,12 +8,12 @@ def rock_paper_scissors(n):
     outer_list = []
     inner_list = []
 
-    def helper(n, inner_list):
-        print("N:", n)
-        if n == 0:
-            outer_list.append(inner_list)
+    def helper(rounds_left, list):
+        print("N:", rounds_left)
+        if rounds_left < 1:
+            outer_list.append(list)
             # print("We're in..", outer_list)
-            inner_list = []
+            list = []
             return outer_list
 
         else:
@@ -21,18 +21,18 @@ def rock_paper_scissors(n):
             for option in range(len(options)):
                 # print("Option:", option)
                 # print("options[option]:", options[option])
-                inner_list.append(options[option])
                 # print("Inner list =>", inner_list)
-                return helper(n - 1, inner_list)
+                # inner_list.append(options[option])
+                helper(rounds_left - 1, list + [options[option]])
 
     helper(n, inner_list)
     return outer_list
 
 
 # print(rock_paper_scissors(0))
-print(rock_paper_scissors(2))
 # print(rock_paper_scissors(2))
-# print(rock_paper_scissors(3))
+# print(rock_paper_scissors(2))
+print(rock_paper_scissors(3))
 
 
 # factorial_memo = {}

@@ -6,8 +6,9 @@ import math
 def recipe_batches(recipe, ingredients):
     if len(recipe) > len(ingredients):
         return 0
-    batches = {k: float(ingredients[k])/recipe[k] for k in recipe}
-    return int(min(batches.values()))
+    else:
+        batches = {k: ingredients[k]/recipe[k] for k in recipe}
+        return int(min(batches.values()))
 
 
 print(recipe_batches({'milk': 100, 'flour': 4, 'sugar': 10, 'butter': 5}, {
